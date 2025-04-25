@@ -43,6 +43,13 @@ def KNN(K, data):
     #scores = cross_val_score(knn, X, y, cv=rkf)
 
 def predictKNN(K, data, prediction):
+
+    if prediction[0] == "M":
+        prediction[0] = 0
+    else:
+        prediction[0] = 1
+
+    prediction = np.array(prediction)
     model, scaler, pca,_,_ = KNN(K, data)
     _, values_df = normalization(data)
     feature_names = values_df.columns
@@ -89,6 +96,6 @@ data = "alzheimer.csv"
 plotKNN(3, "alzheimer.csv")
 
 
-print(predictKNN(3,data, np.array([0,68,16,1,7,1,1714,0.682,1.024])))
-print(predictKNN(3,data, np.array([1,92,14,1,27,0.5,1423,0.696,1.234])))
-print(predictKNN(3,data, np.array([1,20,14,1,27,0.5,1423,0.696,1.234])))
+print(predictKNN(3,data, ["M",68,16,1,7,1,1714,0.682,1.024]))
+print(predictKNN(3,data, ["F",92,14,1,27,0.5,1423,0.696,1.234]))
+print(predictKNN(3,data, ["F",20,14,1,27,0.5,1423,0.696,1.234]))
