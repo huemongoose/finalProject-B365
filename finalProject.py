@@ -69,13 +69,15 @@ def predictKNN(K, data, prediction):
         return ["Converted"]
 
 def plotKNN(K, data):
-    _, _, _, X_pca, results = KNN(K,data)
+    model, _, _, X_pca, results = KNN(K,data)
     
     
 
     plt.figure(figsize=(10, 6))
 
-    scatter = plt.scatter(X_pca[:, 0], X_pca[:, 1], c=results)
+    
+
+    scatter = plt.scatter(X_pca[:, 0], X_pca[:, 1], c=model.predict(X_pca))
 
     labels_map = {0: "Converted", 1: "Demented", 2: "Nondemented"}
     handles, _ = scatter.legend_elements()
