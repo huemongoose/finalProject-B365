@@ -92,17 +92,3 @@ plotKNN(3, "alzheimer.csv")
 print(predictKNN(3,data, np.array([0,68,16,1,7,1,1714,0.682,1.024])))
 print(predictKNN(3,data, np.array([1,92,14,1,27,0.5,1423,0.696,1.234])))
 print(predictKNN(3,data, np.array([1,20,14,1,27,0.5,1423,0.696,1.234])))
-
-
-
-
-
-
-# plt.figure(figsize=(8, 6))
-
-# plt.scatter(coords, coordsy, edgecolor='k', s=50)
-# plt.title("KNN Decision Boundary")
-# plt.xlabel("Feature 1")
-# plt.ylabel("Feature 2")
-# plt.grid(True)
-# plt.show()
