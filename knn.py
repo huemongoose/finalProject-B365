@@ -86,12 +86,7 @@ def plotKNN(K, data):
 
     plt.title("KNN")
     plt.grid(True)
-    plt.show()
-
-
-
-
-
+    #plt.show()
 
 
 data = "alzheimer.csv"
@@ -101,3 +96,11 @@ plotKNN(3, "alzheimer.csv")
 print(predictKNN(3,data, ["M",68,16,1,7,1,1714,0.682,1.024]))
 print(predictKNN(3,data, ["F",92,14,1,27,0.5,1423,0.696,1.234]))
 print(predictKNN(3,data, ["F",20,14,1,27,0.5,1423,0.696,1.234]))
+
+
+
+# Printing accuracy
+model, scaler, pca, X_pca, results = KNN(3, data) 
+y_pred = model.predict(X_pca)             
+accuracy = np.mean(y_pred == results)       
+print(f"\nModel Accuracy: {accuracy:.1%}") 
