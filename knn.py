@@ -8,6 +8,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import RepeatedKFold
+from sklearn.metrics import classification_report
 
 
 
@@ -26,18 +27,20 @@ def normalization(data):
 
 
 def KNN(K, data):
+    print("a")
     results, values = normalization(data)
-
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(values)
 
     pca = PCA(n_components=2)
     X_pca = pca.fit_transform(X_scaled)
-
+    Xtrain, Xtest, Ytrain, Ytest = train_test_split(X_pca, results, random_state=42)
     knn = KNeighborsClassifier(K, metric='euclidean')
-    model = knn.fit(X_pca, results)
-
-    return model, scaler, pca, X_pca, results
+    model = knn.fit(Xtrain, Ytrain)
+    y_pred = knn.predict(Xtest)
+    print(classification_report(Ytest, y_pred))
+    
+    #return model, scaler, pca, X_pca, results
 
     #rkf = RepeatedKFold(n_splits=4, n_repeats=4, random_state=42)
     #scores = cross_val_score(knn, X, y, cv=rkf)
@@ -88,19 +91,18 @@ def plotKNN(K, data):
     plt.grid(True)
     #plt.show()
 
-
 data = "alzheimer.csv"
-plotKNN(3, "alzheimer.csv")
+#plotKNN(3, "alzheimer.csv")
+KNN(3, data)
 
-
-print(predictKNN(3,data, ["M",68,16,1,7,1,1714,0.682,1.024]))
+"""print(predictKNN(3,data, ["M",68,16,1,7,1,1714,0.682,1.024]))
 print(predictKNN(3,data, ["F",92,14,1,27,0.5,1423,0.696,1.234]))
-print(predictKNN(3,data, ["F",20,14,1,27,0.5,1423,0.696,1.234]))
+print(predictKNN(3,data, ["F",20,14,1,27,0.5,1423,0.696,1.234]))"""
 
 
 
-# Printing accuracy
+"""# Printing accuracy
 model, scaler, pca, X_pca, results = KNN(3, data) 
 y_pred = model.predict(X_pca)             
 accuracy = np.mean(y_pred == results)       
-print(f"\nModel Accuracy: {accuracy:.1%}") 
+print(f"\nModel Accuracy: {accuracy:.1%}") """
