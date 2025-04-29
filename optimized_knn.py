@@ -5,13 +5,12 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.metrics import classification_report
 
 # Load and preprocess data
-data = pd.read_csv("alzheimer.csv")  
-data = data.dropna()  
-data['Gender'] = data['Gender'].map({'M': 0, 'F': 1})
+data = pd.read_csv("alzheimers_disease_data.csv")  
+data = data.dropna()
 
 # Separate features (X) and target (y)
-X = data.drop('Group', axis=1)  
-y = LabelEncoder().fit_transform(data['Group'])  
+X = data.drop(['Diagnosis', 'DoctorInCharge', 'PatientID'], axis=1)  
+y = LabelEncoder().fit_transform(data['Diagnosis'])  
 
 # Split data (75% train, 25% test)
 X_train, X_test, y_train, y_test = train_test_split(
@@ -44,5 +43,5 @@ print(f"Test accuracy (K={best_knn.n_neighbors}): {test_accuracy:.2f}")
 # Generate predictions and print classification report
 y_pred = best_knn.predict(X_test_scaled) 
 print("\nClassification Report:")
-print(classification_report(y_test, y_pred, target_names=['Converted', 'Demented', 'Nondemented']))
+print(classification_report(y_test, y_pred))
 
