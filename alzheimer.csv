@@ -1,4 +1,4 @@
-Group,M/F,Age,EDUC,SES,MMSE,CDR,eTIV,nWBV,ASF
+Group,Gender,Age,Years_Of_Education,Socioeconomic_Status,Mental_State_Exam_Score,Clinical_Dementia_Rating,Estimated_Total_Intracranial_Volume,Normalized_Whole_Brain_Volume,Atlas_Scaling_Factor
 Nondemented,M,87,14,2,27,0,1987,0.696,0.883
 Nondemented,M,88,14,2,30,0,2004,0.681,0.876
 Demented,M,75,12,,23,0.5,1678,0.736,1.046

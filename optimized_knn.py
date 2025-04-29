@@ -7,7 +7,7 @@ from sklearn.metrics import classification_report
 # Load and preprocess data
 data = pd.read_csv("alzheimer.csv")  
 data = data.dropna()  
-data['M/F'] = data['M/F'].map({'M': 0, 'F': 1})
+data['Gender'] = data['Gender'].map({'M': 0, 'F': 1})
 
 # Separate features (X) and target (y)
 X = data.drop('Group', axis=1)  
