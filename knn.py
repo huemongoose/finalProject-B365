@@ -25,6 +25,6 @@ knn.fit(X_train, y_train)
 y_pred = knn.predict(X_test)
 
 # Print results
-print(f"Test Accuracy: {accuracy_score(y_test, y_pred):.2f}")
+print(f"\nTest Accuracy: {accuracy_score(y_test, y_pred):.2f}")
 print("\nClassification Report:")
 print(classification_report(y_test, y_pred))
